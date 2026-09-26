@@ -1,0 +1,102 @@
+.admin {
+  min-height: 100vh;
+  background: #05070d;
+  padding: 24px;
+}
+
+.admin__header h1 {
+  color: #00ff88;
+  letter-spacing: 2px;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.admin__header p {
+  color: #9db4c8;
+  font-size: 13px;
+  margin-top: 0;
+}
+
+.admin__upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 24px;
+  flex-wrap: wrap;
+}
+
+.admin__upload label {
+  font-size: 13px;
+  color: #9db4c8;
+}
+
+.admin__danger {
+  margin-left: auto;
+  border-color: #ff3b3b;
+  color: #ff8080;
+}
+
+.admin__error {
+  background: #2a1010;
+  border: 1px solid #ff3b3b;
+  color: #ff8080;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.admin__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0b111c;
+  border: 1px solid #1c2b3a;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.admin-row img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.admin-row input[type='text'] {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-row--eliminated {
+  opacity: 0.6;
+}
+
+.admin-row--eliminated img {
+  filter: grayscale(1);
+}
+
+.admin-row__badge {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #ff6b6b;
+  white-space: nowrap;
+}
+
+.admin-row__eliminate {
+  border-color: #ff3b3b;
+  color: #ff8080;
+  white-space: nowrap;
+}
+
+.admin-row__remove {
+  padding: 4px 8px;
+  color: #7d93a8;
+}

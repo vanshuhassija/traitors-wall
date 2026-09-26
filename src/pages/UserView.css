@@ -1,0 +1,117 @@
+.user-view {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.empty-state {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5b6c;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.collage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 2px;
+  background: #000;
+  transition: filter 0.4s ease;
+}
+
+.collage.is-blurred {
+  filter: blur(24px) brightness(0.5);
+}
+
+.participant-card {
+  position: relative;
+  overflow: hidden;
+  background: #0b0b0b;
+}
+
+.participant-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.participant-card.is-eliminated img {
+  filter: grayscale(1) brightness(0.5);
+}
+
+.participant-card .cross-mark {
+  position: absolute;
+  inset: 0;
+}
+
+.audio-prompt {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 150;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0.6;
+}
+
+.audio-prompt:hover {
+  opacity: 1;
+}
+
+/* Spotlight overlay: pop-out/blur/stab sequence, decoupled from the grid so
+   zooming it never reflows or resizes neighboring tiles. The grid itself
+   blurs behind this via .collage.is-blurred. */
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.75));
+  animation: overlay-fade-in 0.25s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes overlay-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.spotlight-overlay__frame {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid #ff3b3b;
+  box-shadow: 0 0 90px rgba(255, 59, 59, 0.6);
+  transform-origin: center center;
+  animation: frame-pop 3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 0-26%: pop out and zoom in. 26-84%: hold, crossed and centered.
+   84-100%: fly back to the tile's captured original position/size (--dx/--dy/--end-scale-*). */
+@keyframes frame-pop {
+  0% { transform: translate(0, 0) scale(0.15); }
+  16% { transform: translate(0, 0) scale(1.08); }
+  26% { transform: translate(0, 0) scale(1); }
+  84% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(var(--dx), var(--dy)) scale(var(--end-scale-x), var(--end-scale-y)); }
+}
+
+.spotlight-overlay__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

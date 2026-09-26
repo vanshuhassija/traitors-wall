@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #05070d;
+  color: #e6f1ff;
+  font-family: 'Courier New', ui-monospace, monospace;
+}
+
+a {
+  color: #00ff88;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid #2a3a4a;
+  background: #101826;
+  color: #e6f1ff;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+button:hover {
+  border-color: #00ff88;
+}
+
+input[type='text'] {
+  font-family: inherit;
+  background: #0b111c;
+  color: #e6f1ff;
+  border: 1px solid #2a3a4a;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+.cross-mark line {
+  stroke: #ff3b3b;
+  stroke-width: 9;
+  stroke-linecap: round;
+}
+
+.cross-mark--static line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 0;
+}
+
+.cross-mark--draw line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  /* Wait until the pop-out zoom has settled (see frame-pop's 26% mark in
+     UserView.css) so the slash visibly draws across the big, still photo
+     instead of finishing while it's still tiny and growing. */
+  animation: draw-slash 0.35s ease-out 0.85s forwards;
+}
+
+.cross-mark--draw line:last-child {
+  animation-delay: 1s;
+}
+
+@keyframes draw-slash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
